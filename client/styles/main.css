@@ -1,0 +1,60 @@
+:root {
+    --main-bg-color: #000000;
+    --main-fg-color: #53C22B;
+}
+
+.hidden {
+    display: none !important;
+}
+
+html, body {
+    height: 100%;
+}
+
+html, body, .page-wrapper, header, main, footer {
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+    background: var(--main-bg-color);
+    color: var(--main-fg-color);
+}
+
+.page-wrapper {
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+}
+button {
+    cursor: pointer;
+}
+
+header, footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid var(--main-fg-color);
+}
+
+footer {
+    border-bottom: none;
+    border-top: 2px solid var(--main-fg-color);
+}
+
+.copyleft {
+    margin: 0 10px;
+    font-size: 14px;
+    transform: scaleX(-1);
+    display: inline-block;
+}
+
+.stdout {
+    padding-top: 50px;
+}
+
+.stdout div {
+    padding: 5px 0 5px 20px;
+}
