@@ -9,6 +9,7 @@
 ### Server
 
 - [ ] choose optimal JWT secret key size, put it to the [file](.env)
+- [ ] add validators for environment variables
 
 ### Client
 
