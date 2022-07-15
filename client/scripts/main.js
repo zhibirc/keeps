@@ -1,3 +1,12 @@
+/**
+ * Main application script file.
+ */
+
+'use strict';
+
+import { Auth } from './auth.js';
+import { Modal } from './modal.js';
+
 const currentYear = new Date().getFullYear();
 const $stdout = document.getElementById('stdout');
 const phraseList = [
@@ -29,6 +38,11 @@ const createRow = (() => {
     };
 })();
 
+const [$row, $txt] = createRow();
+$stdout.appendChild($row);
+print([...phraseList], phraseList[0], $txt);
+document.getElementById('footer-year').textContent = currentYear;
+
 function print ( phraseList, line, $txt ) {
     if ( line.length ) {
         setTimeout(() => {
@@ -45,8 +59,3 @@ function print ( phraseList, line, $txt ) {
         }, ROW_DELAY_MS);
     }
 }
-
-const [$row, $txt] = createRow();
-$stdout.appendChild($row);
-print([...phraseList], phraseList[0], $txt);
-document.getElementById('footer-year').textContent = currentYear;
