@@ -4,6 +4,8 @@
 
 'use strict';
 
+import { pick, show, hide } from './utils.js';
+
 /**
  *
  * @param {Array} data
@@ -15,17 +17,23 @@ function parseFields ( data ) {
 export class Modal {
     #active;
     #fields;
+    #$element;
 
-    constructor ( fields ) {
+    constructor ( $element, config ) {
+        this.#$element = $element;
         this.#active = false;
-        this.#fields = parseFields(fields);
+        this.#fields = parseFields(config.fields);
+
+        pick('.title', $element).textContent = config.title;
     }
 
     show () {
+        show(this.#$element);
         this.#active = true;
     }
 
     hide () {
+        hide(this.#$element);
         this.#active = false;
     }
 

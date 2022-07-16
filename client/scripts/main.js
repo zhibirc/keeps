@@ -6,9 +6,10 @@
 
 import { Auth } from './auth.js';
 import { Modal } from './modal.js';
+import { pick, show } from './utils.js';
 
 const currentYear = new Date().getFullYear();
-const $stdout = document.getElementById('stdout');
+const $stdout = pick('#stdout');
 const phraseList = [
     'Hello, <username>!',
     'How are you today?',
@@ -25,6 +26,11 @@ const ROW_DELAY_MS = 2000;
 const CHAR_DELAY_MS = 50;
 const PS1 = '>  ';
 const CARET = '\u258C';
+const controls = {
+    $login: pick('#login'),
+    $logout: pick('#logout'),
+    $signup: pick('#signup'),
+};
 const createRow = (() => {
     const $row = document.createElement('div');
     const $txt = document.createTextNode(PS1);
@@ -37,11 +43,21 @@ const createRow = (() => {
         return [$newRow, $newTxt];
     };
 })();
-
 const [$row, $txt] = createRow();
+const $overlay = pick('#overlay');
+const auth = new Auth();
+const modalLogin = new Modal(pick('#modal-login'), {title: 'Login', fields: []});
+const modalSignup = new Modal(pick('#modal-signup'), {title: 'Signup', fields: []});
+
 $stdout.appendChild($row);
 print([...phraseList], phraseList[0], $txt);
-document.getElementById('footer-year').textContent = currentYear;
+pick('#footer-year').textContent = currentYear;
+
+controls.$login.addEventListener('click', event => console.log('login'));
+controls.$signup.addEventListener('click', event => {
+    show($overlay);
+    modalSignup.show();
+});
 
 function print ( phraseList, line, $txt ) {
     if ( line.length ) {
@@ -52,9 +68,14 @@ function print ( phraseList, line, $txt ) {
     } else if ( phraseList.length ) {
         setTimeout(() => {
             $txt.nodeValue = $txt.nodeValue.slice(0, -1);
+            phraseList.splice(0, 1);
+
+            if ( phraseList.length === 0 ) {
+                return;
+            }
+
             const [$row, $txtNode = $txt] = createRow();
             $stdout.appendChild($row);
-            phraseList.splice(0, 1);
             print(phraseList, phraseList[0], $txtNode);
         }, ROW_DELAY_MS);
     }
