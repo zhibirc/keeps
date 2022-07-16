@@ -7,29 +7,57 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="description" content="Does its best to keep your secrets">
         <meta name="author" content="Yaroslav Surilov">
+
         <title>Keeps</title>
+
         <meta property="og:title" content="Keeps">
         <meta property="og:description" content="Does its best to keep your secrets">
         <meta property="og:image" content="images/">
         <meta name="twitter:card" content="summary_large_image">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+        <link rel="manifest" href="./site.webmanifest">
+
         <link rel="stylesheet" href="./styles/main.css">
     </head>
     <body>
         <div class="page-wrapper">
             <header>
                 <nav>
-                    <button>Login</button>
-                    <button>Signup</button>
+                    <button id="show-modal-login">Login</button>
+                    <button id="show-modal-signup">Signup</button>
+                    <button id="logout">Logout</button>
                 </nav>
             </header>
             <main>
                 <div class="stdout" id="stdout"></div>
             </main>
         </div>
+
         <footer>
             Keeps <span class="copyleft">&copy;</span> <span id="footer-year"></span>
         </footer>
 
-        <script src="./scripts/main.js"></script>
+        <div class="modal-wrapper hidden" id="modal-login">
+            <h3 class="modal-title"></h3>
+            <div class="modal-content"></div>
+            <div class="modal-controls">
+                <button id="close-modal-login">Cancel</button>
+                <button id="login">Login</button>
+            </div>
+        </div>
+        <div class="modal-wrapper hidden" id="modal-signup">
+            <h3 class="modal-title"></h3>
+            <div class="modal-content"></div>
+            <div class="modal-controls">
+                <button id="close-modal-signup">Cancel</button>
+                <button id="signup">Signup</button>
+            </div>
+        </div>
+        <div class="overlay hidden" id="overlay"></div>
+
+        <script type="module" src="./scripts/main.js"></script>
     </body>
 </html>
