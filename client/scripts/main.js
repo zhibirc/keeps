@@ -6,7 +6,7 @@
 
 import { Auth } from './auth.js';
 import { Modal } from './modal.js';
-import { pick, show } from './utils.js';
+import { pick, show, hide } from './utils.js';
 
 const currentYear = new Date().getFullYear();
 const $stdout = pick('#stdout');
@@ -27,9 +27,11 @@ const CHAR_DELAY_MS = 50;
 const PS1 = '>  ';
 const CARET = '\u258C';
 const controls = {
-    $login: pick('#login'),
+    $showLogin: pick('#show-modal-login'),
     $logout: pick('#logout'),
-    $signup: pick('#signup'),
+    $showSignup: pick('#show-modal-signup'),
+    $closeLogin: pick('#close-modal-login'),
+    $closeSignup: pick('#close-modal-signup')
 };
 const createRow = (() => {
     const $row = document.createElement('div');
@@ -53,11 +55,30 @@ $stdout.appendChild($row);
 print([...phraseList], phraseList[0], $txt);
 pick('#footer-year').textContent = currentYear;
 
-controls.$login.addEventListener('click', event => console.log('login'));
-controls.$signup.addEventListener('click', event => {
+/* ------------------------------------------
+                 Event Listeners
+   ------------------------------------------ */
+
+controls.$showLogin.addEventListener('click', () => {
+    show($overlay);
+    modalLogin.show();
+});
+controls.$showSignup.addEventListener('click', () => {
     show($overlay);
     modalSignup.show();
 });
+controls.$closeLogin.addEventListener('click', () => {
+    hide($overlay);
+    modalLogin.hide();
+});
+controls.$closeSignup.addEventListener('click', () => {
+    hide($overlay);
+    modalSignup.hide();
+});
+
+/* ------------------------------------------
+                 Functions
+   ------------------------------------------ */
 
 function print ( phraseList, line, $txt ) {
     if ( line.length ) {

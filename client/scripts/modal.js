@@ -24,7 +24,7 @@ export class Modal {
         this.#active = false;
         this.#fields = parseFields(config.fields);
 
-        pick('.title', $element).textContent = config.title;
+        pick('.modal-title', $element).textContent = config.title;
     }
 
     show () {

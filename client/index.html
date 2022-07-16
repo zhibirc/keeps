@@ -26,8 +26,8 @@
         <div class="page-wrapper">
             <header>
                 <nav>
-                    <button id="login">Login</button>
-                    <button id="signup">Signup</button>
+                    <button id="show-modal-login">Login</button>
+                    <button id="show-modal-signup">Signup</button>
                     <button id="logout">Logout</button>
                 </nav>
             </header>
@@ -40,8 +40,22 @@
             Keeps <span class="copyleft">&copy;</span> <span id="footer-year"></span>
         </footer>
 
-        <div class="modal-wrapper hidden" id="modal-login"><h3 class="title"></h3></div>
-        <div class="modal-wrapper hidden" id="modal-signup"><h3 class="title"></h3></div>
+        <div class="modal-wrapper hidden" id="modal-login">
+            <h3 class="modal-title"></h3>
+            <div class="modal-content"></div>
+            <div class="modal-controls">
+                <button id="close-modal-login">Cancel</button>
+                <button id="login">Login</button>
+            </div>
+        </div>
+        <div class="modal-wrapper hidden" id="modal-signup">
+            <h3 class="modal-title"></h3>
+            <div class="modal-content"></div>
+            <div class="modal-controls">
+                <button id="close-modal-signup">Cancel</button>
+                <button id="signup">Signup</button>
+            </div>
+        </div>
         <div class="overlay hidden" id="overlay"></div>
 
         <script type="module" src="./scripts/main.js"></script>

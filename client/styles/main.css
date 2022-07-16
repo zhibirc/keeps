@@ -72,6 +72,8 @@ footer {
 }
 
 .modal-wrapper {
+    display: flex;
+    flex-direction: column;
     background: var(--main-bg-color);
     color: var(--main-fg-color);
     width: 300px;
@@ -86,7 +88,11 @@ footer {
     border: 1px solid var(--main-fg-color);
 }
 
-    .title {
-        width: 100%;
+    .modal-title, .modal-controls {
+        height: 30px;
         text-align: center;
+    }
+
+    .modal-content {
+        height: 400px;
     }
