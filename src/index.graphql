@@ -1,0 +1,11 @@
+mutation AddUser {
+    email
+    password
+}
+
+mutation {
+    # -> guest -> user
+    login {}
+    # -> user -> guest
+    logout {}
+}
