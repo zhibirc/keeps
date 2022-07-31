@@ -4,10 +4,11 @@ import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
+import { UserModule } from './user/user.module';
 
 const isProductionMode = process.env.NODE_ENV = 'production';
 
@@ -44,10 +45,10 @@ const isProductionMode = process.env.NODE_ENV = 'production';
       }),
       ServeStaticModule.forRoot({
           rootPath: join(__dirname, '..', 'client')
-      })
+      }),
+      UserModule
   ],
   controllers: [AppController],
   providers: [AppService]
 })
-
 export class AppModule {}
