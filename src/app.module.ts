@@ -10,7 +10,7 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { UserModule } from './user/user.module';
 
-const isProductionMode = process.env.NODE_ENV = 'production';
+const isProductionMode = process.env.NODE_ENV === 'production';
 
 @Module({
   imports: [
